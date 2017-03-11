@@ -5,8 +5,8 @@
 			// These are the default settings.
 
 			siteUrl: '',
-			consumerKey: '',
-			consumerSecret: '',
+			userName: '',
+			passWord: '',
 			securityCheck: '',
 			wpSystem: 'wp/',
 			apiVersion: 'v2/',
@@ -25,7 +25,7 @@
 			beforeSend: function ( xhr ) {
 				xhr.setRequestHeader( 'X-WP-Nonce', settings.securityCheck ),
 				xhr.setRequestHeader( 'Authorization', 
-					'Basic ' + btoa( settings.consumerKey + ':' + settings.consumerSecret )
+					'Basic ' + btoa( settings.userName + ':' + settings.passWord )
 				);
 			},
 			success: function( data, txtStatus, xhr ) {

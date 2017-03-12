@@ -18,6 +18,9 @@
 			formMethod: 'GET', // Default: GET. Can use POST for posting data.
 			dataType: 'json', // Default: json - For cross-domain support, set as jsonp
 			cache: true, // Default: true - If dataType is set as jsonp then this will automatically set to false.
+			pageNumber: 0, // Default: 0 - Specify the page of results to return.
+			perPage: 0, // Default: 0 - Specify the number of records to return in one request.
+			offSet: 0, // Default: 0 - Specify an arbitrary offset at which to start retrieving posts.
 		}, options );
 
 		// Checks that the site url was set before proceeding.
@@ -67,12 +70,25 @@
 			settings.cache = false;
 		}
 
+		// Prepares the pagination to apply at the end of the url request.
+		var pagination = '';
+
+		if ( settings.perPage > 0 && settings.pageNumber > 0 ) {
+			pagination = '?per_page=' + settings.perPage + '&page=' + settings.pageNumber;
+		}
+		else if ( settings.perPage > 0 && settings.offSet > 0 ) {
+			pagination = '?per_page=' + settings.perPage + '&page=' + settings.offSet;
+		}
+		else if ( settings.perPage > 0 ) {
+			pagination = '?per_page=' + settings.perPage;
+		}
+
 		return this.each(function() {
 
 			if ( settings.endPoint !== 'media' ) {
 
 				$.ajax({
-					url: settings.siteUrl + "/wp-json/" + settings.wpSystem + settings.apiVersion + settings.endPoint + settings.postID,
+					url: settings.siteUrl + "/wp-json/" + settings.wpSystem + settings.apiVersion + settings.endPoint + settings.postID + pagination,
 					method: settings.formMethod,
 					cache: settings.cache,
 					contentType: "application/json",

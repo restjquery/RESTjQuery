@@ -17,6 +17,10 @@ An experimental project that provides a simple way of using the WordPress REST A
 * postData - **{}**
 * formMethod - **GET** - Use **POST** for posting data.
 * dataType - **json** - Use **jsonp** for cross-domain support.
+* pageNumber - **0** - Specify the page of results to return.
+* perPage - **0** - Specify the number of records to return in one request.
+* offSet - **0** - Specify an arbitrary offset at which to start retrieving posts.
+
 
 ### Example for Getting Posts
 ```JavaScript

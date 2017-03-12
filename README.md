@@ -31,6 +31,17 @@ $('.app').wprestapi({
 });
 ```
 
+### Example for Updating a Single Post
+```
+$('.app').wprestapi({
+	siteUrl: "https://wc-rest-testing.dev",
+	endPoint: 'posts/',
+	postID: '1',
+	postData: {"title":"Go Away... Im Resting"},
+	formMethod: 'POST'
+});
+```
+
 ### Example for Getting Products (WooCommerce)
 ```
 $('.store').wprestapi({

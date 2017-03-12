@@ -13,10 +13,11 @@
 			apiVersion: 'v2/',
 			endPoint: 'posts', // Default: Posts
 			postID: '', // Default: Blank - Set Post ID for updating or deleting a specific post.
-			postData: '{}', // Default: Empty JSON,
+			postData: '{}', // Default: Empty JSON
 			mediaFile: '', // Default: Empty
 			formMethod: 'GET', // Default: GET. Can use POST for posting data.
-			dataType: 'json', // Default: json - For cross domain support, set as jsonp
+			dataType: 'json', // Default: json - For cross-domain support, set as jsonp
+			cache: true, // Default: true - If dataType is set as jsonp then this will automatically set to false.
 		}, options );
 
 		// Checks that the site url was set before proceeding.
@@ -61,6 +62,11 @@
 			return false;
 		}
 
+		// Set cache to false if dataType is set to jsonp.
+		if ( settings.dataType == 'jsonp' ) {
+			settings.cache = false;
+		}
+
 		return this.each(function() {
 
 			if ( settings.endPoint !== 'media' ) {
@@ -68,6 +74,7 @@
 				$.ajax({
 					url: settings.siteUrl + "/wp-json/" + settings.wpSystem + settings.apiVersion + settings.endPoint + settings.postID,
 					method: settings.formMethod,
+					cache: settings.cache,
 					contentType: "application/json",
 					crossDomain: true,
 					crossOrigin: true,

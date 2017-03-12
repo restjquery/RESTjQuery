@@ -13,7 +13,8 @@
 			apiVersion: 'v2/',
 			endPoint: 'posts', // Default: Posts
 			postID: '', // Default: Blank - Set Post ID for updating or deleting a specific post.
-			postData: '{}', // Default: Empty JSON
+			postData: '{}', // Default: Empty JSON,
+			mediaFile: '', // Default: Empty
 			formMethod: 'GET', // Default: GET. Can use POST for posting data.
 			dataType: 'json', // Default: json - For cross domain support, set as jsonp
 		}, options );
@@ -21,6 +22,12 @@
 		// Checks that the site url was set before proceeding.
 		if ( settings.siteUrl == '' ) {
 			console.error('WP REST API jQuery Error: The site url was not set!');
+			return false;
+		}
+
+		// Checks if a password was entered if username is not empty.
+		if ( settings.userName !== '' && settings.passWord == '' ) {
+			console.error('WP REST API jQuery Error: Password for authorization is missing!');
 			return false;
 		}
 
@@ -56,31 +63,38 @@
 
 		return this.each(function() {
 
-			$.ajax({
-				url: settings.siteUrl + "/wp-json/" + settings.wpSystem + settings.apiVersion + settings.endPoint + settings.postID,
-				method: settings.formMethod,
-				contentType: "application/json",
-				crossDomain: true,
-				crossOrigin: true,
-				data: settings.postData,
-				beforeSend: function ( xhr ) {
-					xhr.setRequestHeader( 'X-WP-Nonce', settings.securityCheck ),
-					xhr.setRequestHeader( 'Authorization', 
-						'Basic ' + btoa( settings.userName + ':' + settings.passWord )
-					);
-				},
-				success: function( data, status, xhr ) {
-					//console.log(data);
-					return data;
-				},
-				error: function( data, status, xhr ) {
-					console.error('WP REST API jQuery Error: Response = ' + xhr );
-				},
-				dataType: settings.dataType
-			})
-			.done(function( responseData, status, xhr ) {
-				return responseData;
-			});
+			if ( settings.endPoint !== 'media' ) {
+
+				$.ajax({
+					url: settings.siteUrl + "/wp-json/" + settings.wpSystem + settings.apiVersion + settings.endPoint + settings.postID,
+					method: settings.formMethod,
+					contentType: "application/json",
+					crossDomain: true,
+					crossOrigin: true,
+					data: settings.postData,
+					beforeSend: function ( xhr ) {
+						xhr.setRequestHeader( 'X-WP-Nonce', settings.securityCheck ),
+						xhr.setRequestHeader( 'Authorization', 
+							'Basic ' + btoa( settings.userName + ':' + settings.passWord )
+						);
+					},
+					success: function( data, status, xhr ) {
+						//console.log(data);
+						return data;
+					},
+					error: function( data, status, xhr ) {
+						console.error('WP REST API jQuery Error: Response = ' + xhr );
+					},
+					dataType: settings.dataType
+				})
+				.done( function( responseData, status, xhr ) {
+					return responseData;
+				});
+
+			}
+			else {
+				console.error('WP REST API jQuery Error: Uploading Media is not yet supported!');
+			}
 
 			return this;
 		});

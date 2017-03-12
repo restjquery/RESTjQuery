@@ -16,6 +16,7 @@ An experimental project that provides a simple way of using the WordPress REST A
 * postID - **Set Post ID for updating or deleting a specific post.**
 * postData - **{}**
 * formMethod - **GET** - Use **POST** for posting data.
+* dataType - **json** - Use **jsonp** for cross-domain support.
 
 ### Example for Getting Posts
 ```JavaScript

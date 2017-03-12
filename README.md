@@ -1,6 +1,8 @@
 # WordPress jQuery REST API Wrapper
 
-> Experimental Project: Provides a simple way of using the WordPress REST API via jQuery.
+An experimental project that provides a simple way of using the WordPress REST API via jQuery.
+
+> This project is in an alpha status. The project is not complete.
 
 ## Default Settings
 
@@ -16,14 +18,14 @@
 * formMethod - **GET** - Use **POST** for posting data.
 
 ### Example for Getting Posts
-```
+```JavaScript
 $('.app').wprestapi({
 	siteUrl: "https://wc-rest-testing.dev",
 });
 ```
 
 ### Example for Getting a Single Post (Hello World)
-```
+```JavaScript
 $('.app').wprestapi({
 	siteUrl: "https://wc-rest-testing.dev",
 	endPoint: 'posts/',
@@ -32,7 +34,7 @@ $('.app').wprestapi({
 ```
 
 ### Example for Updating a Single Post
-```
+```JavaScript
 $('.app').wprestapi({
 	siteUrl: "https://wc-rest-testing.dev",
 	endPoint: 'posts/',
@@ -43,7 +45,7 @@ $('.app').wprestapi({
 ```
 
 ### Example for Getting Products (WooCommerce)
-```
+```JavaScript
 $('.store').wprestapi({
 	siteUrl: "https://wc-rest-testing.dev",
 	wpSystem: 'wc/',
@@ -53,7 +55,7 @@ $('.store').wprestapi({
 ```
 
 ### Example for Getting a Single Product (WooCommerce)
-```
+```JavaScript
 $('.store').wprestapi({
 	siteUrl: "https://wc-rest-testing.dev",
 	wpSystem: 'wc/',

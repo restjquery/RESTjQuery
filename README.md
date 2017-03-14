@@ -4,6 +4,8 @@ An experimental project that provides a simple way of using the WordPress REST A
 
 > This project is in an alpha status. The project is not complete.
 
+You can use the [WordPress jQuery REST API Support](https://github.com/seb86/WordPress-REST-API-jQuery-Support) plugin for quick script installation.
+
 ## Default Settings
 
 * siteUrl - **Must be set**.

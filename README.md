@@ -1,4 +1,4 @@
-# WordPress jQuery REST API Wrapper
+# WordPress REST API jQuery
 
 An experimental project that provides a simple way of using the WordPress REST API via jQuery.
 

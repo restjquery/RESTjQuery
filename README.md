@@ -31,7 +31,7 @@ var posts = restjQuery();
 
 ### Example for Getting a Single Post (Hello World)
 ```JavaScript
-$('.app').wprestapi({
+var helloWorld = restjQuery({
 	siteUrl: "https://wc-rest-testing.dev",
 	endPoint: 'posts/',
 	postID: '1'
@@ -40,7 +40,7 @@ $('.app').wprestapi({
 
 ### Example for Updating a Single Post
 ```JavaScript
-$('.app').wprestapi({
+restjQuery({
 	siteUrl: "https://wc-rest-testing.dev",
 	endPoint: 'posts/',
 	postID: '1',
@@ -51,7 +51,7 @@ $('.app').wprestapi({
 
 ### Example for Getting Products (WooCommerce)
 ```JavaScript
-$('.store').wprestapi({
+var products = restjQuery({
 	siteUrl: "https://wc-rest-testing.dev",
 	wpSystem: 'wc/',
 	apiVersion: 'v1/',
@@ -61,7 +61,7 @@ $('.store').wprestapi({
 
 ### Example for Getting a Single Product (WooCommerce)
 ```JavaScript
-$('.store').wprestapi({
+var singleItem = restjQuery({
 	siteUrl: "https://wc-rest-testing.dev",
 	wpSystem: 'wc/',
 	apiVersion: 'v1/',

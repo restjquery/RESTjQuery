@@ -4,11 +4,11 @@ An experimental project that provides a simple way of using the WordPress REST A
 
 > This project is in beta status. The project is workable.
 
-You can use the [WordPress jQuery REST API Support](https://github.com/seb86/WordPress-REST-API-jQuery-Support) plugin for quick script installation.
+You can use the [WordPress REST API jQuery Support](https://github.com/seb86/WordPress-REST-API-jQuery-Support) plugin for quick script installation.
 
 ## Default Settings
 
-* siteUrl - **Default is the current host name. Only set if connecting with another site.**.
+* siteUrl - **Default is the current host name. Only set if connecting with another site.**
 * userName - **Only set if authorization is needed.**
 * passWord - **Only used if authorization is needed.**
 * securityCheck - **Must be set so logged in users can access authorized requests.**

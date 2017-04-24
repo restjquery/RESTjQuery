@@ -3,55 +3,59 @@ var response = null;
 var restjQuery = function( options ) {
 	'use strict';
 
+	var version = "1.0";
+
 	var hostName = window.location.hostname; // Returns current host name only.
 
 	var protocol = window.location.protocol; // Returns the protocol used. i.e file: or http: or https:
 
 	// These are the default settings.
 	var settings = $.extend({
-		siteUrl: hostName, // Default is the current host name. Only set if connecting with another site.
-		userName: '', // Only set if authorization is needed.
-		passWord: '', // Only set if authorization is needed.
-		securityCheck: '', // Must be set so logged in users can access authorized requests.
-		wpSystem: 'wp/', // Default is wp/ for WordPress. For WooCommerce, set it to wc/
-		apiVersion: 'v2/',
-		endPoint: 'posts', // Default: Posts
-		postID: '', // Default: Blank - Set Post ID for updating or deleting a specific post.
+		site_url: protocol + "//" + hostName, // Default is the current host name. Only set if connecting with another site.
+		authorization: {
+			authorized_method: null,
+			username: null,
+			password: null,
+			token: {
+				access_token: null,
+				consumer_key: null,
+				consumer_secret: null
+			}
+		},
+		nonce: null, // Must be set so logged in users can access authorized requests.
+		namespace: 'wp/v2/', // Default is wp/v2/ for WordPress. For WooCommerce, set it to wc/v1/
+		endpoint: 'posts', // Default: Posts
 		postData: '{}', // Default: Empty JSON
-		mediaFile: '', // Default: Empty
+		filename: '', // Default: Empty - Used to specify the filename that the media file will be called.
 		formMethod: 'GET', // Default: GET. Can use POST for posting data.
 		dataType: 'json', // Default: json - For cross-domain support, set as jsonp
 		cache: true, // Default: true - If dataType is set as jsonp then this will automatically set to false.
-		pageNumber: 0, // Default: 0 - Specify the page of results to return.
-		perPage: 0, // Default: 0 - Specify the number of records to return in one request.
-		offSet: 0, // Default: 0 - Specify an arbitrary offset at which to start retrieving posts.
 	}, options );
 
-	if ( settings.siteUrl == '' && protocol == 'file:' ) {
+	if ( settings.site_url == '' && protocol == 'file:' ) {
 		console.error('WP REST API jQuery Error: Script can not run as a file.');
 		return false;
 	}
 
+	if ( settings.authorization.authorized_method !== null ) {
+		console.error('WP REST API jQuery Error: Authorization method was not specified.');
+		return false;
+	}
+
 	// Checks if a password was entered if username is not empty.
-	if ( settings.userName !== '' && settings.passWord == '' ) {
+	if ( settings.authorization.username !== '' && settings.authorization.password == '' ) {
 		console.error('WP REST API jQuery Error: Password for authorization is missing!');
 		return false;
 	}
 
-	// Checks that the REST API is identified.
-	if ( settings.wpSystem == '' ) {
-		console.error('WP REST API jQuery Error: REST API is unknown!');
-		return false;
-	}
-
-	// Checks that the REST API version is identified.
-	if ( settings.apiVersion == '' ) {
-		console.error('WP REST API jQuery Error: REST API version is unknown!');
+	// Checks that the namespace is identified.
+	if ( settings.namespace == '' ) {
+		console.error('WP REST API jQuery Error: Namespace is unknown!');
 		return false;
 	}
 
 	// Checks that the endpoint is defined.
-	if ( settings.endPoint == '' ) {
+	if ( settings.endpoint == '' ) {
 		console.error('WP REST API jQuery Error: Endpoint was not defined!');
 		return false;
 	}
@@ -73,54 +77,142 @@ var restjQuery = function( options ) {
 		settings.cache = false;
 	}
 
-	// Prepares the pagination to apply at the end of the url request.
-	var pagination = '';
-
-	if ( settings.perPage > 0 && settings.pageNumber > 0 ) {
-		pagination = '?per_page=' + settings.perPage + '&page=' + settings.pageNumber;
-	}
-	else if ( settings.perPage > 0 && settings.offSet > 0 ) {
-		pagination = '?per_page=' + settings.perPage + '&page=' + settings.offSet;
-	}
-	else if ( settings.perPage > 0 ) {
-		pagination = '?per_page=' + settings.perPage;
+	// Check if the request requires authentication. False by default.
+	var auth_headers = false;
+	if ( settings.nonce !== null || settings.authorization.authorized_method !== null ) {
+		auth_headers = true;
 	}
 
-	console.log('Requested Endpoint: ' + settings.siteUrl + "/wp-json/" + settings.wpSystem + settings.apiVersion + settings.endPoint + settings.postID + pagination );
+	console.log('Requested Endpoint: ' + settings.site_url + "/wp-json/" + settings.namespace + settings.endpoint );
 
-	if ( settings.endPoint !== 'media' ) {
+	var standard_request = true;
+
+	// Checks that we are posting data for uploading media files.
+	if ( settings.endpoint == 'media' && settings.formMethod == 'POST' ) {
+		standard_request = false;
+	}
+
+	if ( standard_request ) {
+		response = restRequest( settings );
+	}
+	else {
+		response = restUploadMedia( settings );
+	}
+
+	return response;
+
+	/**
+	 * This runs the REST API request. Passes the settings variable.
+	 */
+	function restRequest( settings ) {
+
+		// If authorization is requested then we set the appropriate headers.
+		if ( auth_headers ) {
+
+			console.log('WP REST API jQuery Authenticating Request...');
+
+			$.ajax({
+				async: false,
+				url: settings.site_url + "/wp-json/" + settings.namespace + settings.endpoint,
+				method: settings.formMethod,
+				cache: settings.cache,
+				crossDomain: true,
+				crossOrigin: true,
+				data: settings.postData,
+				beforeSend: function ( xhr ) {
+					setHeaders( settings, xhr );
+				},
+				complete: function( newData ) {
+					jQuery('body').trigger('restjquery_complete_' + settings.formMethod + '_' + settings.endpoint, [newData]);
+
+					response = newData.responseJSON;
+				},
+				error: function( error ) {
+					jQuery('body').trigger('restjquery_error_' + settings.formMethod + '_' + settings.endpoint, [error]);
+
+					response = error;
+				},
+				dataType: settings.dataType
+			});
+
+		}
+		else {
+
+			$.ajax({
+				async: false,
+				url: settings.site_url + "/wp-json/" + settings.namespace + settings.endpoint,
+				method: settings.formMethod,
+				cache: settings.cache,
+				contentType: "application/json",
+				crossDomain: true,
+				crossOrigin: true,
+				data: settings.postData,
+				complete: function( newData ) {
+					jQuery('body').trigger('restjquery_complete_' + settings.formMethod + '_' + settings.endpoint, [newData]);
+
+					response = newData.responseJSON;
+				},
+				error: function( error ) {
+					jQuery('body').trigger('restjquery_error_' + settings.formMethod + '_' + settings.endpoint, [error]);
+
+					response = error;
+				},
+				dataType: settings.dataType
+			});
+
+		}
+
+		return response;
+	}
+
+	function restUploadMedia( settings ) {
 
 		$.ajax({
-			async: false,
-			url: settings.siteUrl + "/wp-json/" + settings.wpSystem + settings.apiVersion + settings.endPoint + settings.postID + pagination,
-			method: settings.formMethod,
-			cache: settings.cache,
-			contentType: "application/json",
-			crossDomain: true,
-			crossOrigin: true,
+			async: true,
+			url: settings.site_url + "/wp-json/" + settings.namespace + "media",
+			method: 'POST',
 			data: settings.postData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			headers: { 'Content-Disposition': 'attachment;filename=' + settings.filename },
 			beforeSend: function ( xhr ) {
-				xhr.setRequestHeader( 'X-WP-Nonce', settings.securityCheck ),
-				xhr.setRequestHeader( 'Authorization', 
-					'Basic ' + btoa( settings.userName + ':' + settings.passWord )
-				);
+				setHeaders( settings, xhr );
 			},
-			complete: function( data, status, xhr ) {
-				response = data;
+			complete: function( newData ) {
+				response = newData;
+				console.log(response);
+
+				if ( newData.status == '200' ) {
+					console.log('Upload Done');
+				}
+				else {
+					console.error('Upload failed!');
+				}
 			},
-			error: function( data, status, xhr ) {
-				response = data;
+			error: function( error ) {
+				response = error;
 			},
-			dataType: settings.dataType
 		});
 
 		return response;
-
 	}
-	else {
-		console.error('WP REST API jQuery Error: Uploading Media is not yet supported!');
-		response = 'Not ready!';
-		return response;
+
+	/**
+	 * Sets the required request headers.
+	 */
+	function setHeaders( settings, xhr ) {
+		if ( settings.nonce !== null ) {
+			xhr.setRequestHeader( 'X-WP-Nonce', settings.nonce );
+		}
+
+		var authorized_method = settings.authorization.authorized_method;
+
+		if ( authorized_method == 'basic' || authorized_method == 'consumer' ) {
+			xhr.setRequestHeader( 'Authorization', 'Basic ' + btoa( settings.authorization.username + ':' + settings.authorization.password ) );
+		}
+
+		return xhr;
 	}
 
 };

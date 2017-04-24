@@ -1,71 +1,27 @@
 # WordPress REST API jQuery
 
-An experimental project that provides a simple way of using the WordPress REST API via jQuery.
+A lightweight jQuery script for handerling REST API requests developed by [Sébastien Dumont](https://sebastiendumont.com).
 
-> This project is in beta status. The project is workable.
+> This project is in beta status.
+
+[Documentation](https://docs.restjquery.com/) | [Examples](https://github.com/seb86/WordPress-REST-API-jQuery-Examples)
 
 You can use the [WordPress REST API jQuery Support](https://github.com/seb86/WordPress-REST-API-jQuery-Support) plugin for quick script installation.
 
-## Default Settings
+This project was created to save time writing more lines of code just to get the returned REST API response via jQuery. Perfect for keeping your own code to a minimum rather than repeating yourself.
 
-* siteUrl - **Default is the current host name. Only set if connecting with another site.**
-* userName - **Only set if authorization is needed.**
-* passWord - **Only used if authorization is needed.**
-* securityCheck - **Must be set so logged in users can access authorized requests.**
-* wpSystem - Default is **wp/** for WordPress. For WooCommerce, set it to **wc/**
-* apiVersion - **v2/**
-* endPoint - **posts** - Add a forward slash at the end when specifiying a post. **e.g. posts/**
-* postID - **Set Post ID for updating or deleting a specific post.**
-* postData - **{}**
-* formMethod - **GET** - Use **POST** for posting data.
-* dataType - **json** - Use **jsonp** for cross-domain support.
-* pageNumber - **0** - Specify the page of results to return.
-* perPage - **0** - Specify the number of records to return in one request.
-* offSet - **0** - Specify an arbitrary offset at which to start retrieving posts.
+If you need help with the script or want to join a community of developers who use the script you can join the Slack channel after paying a fee in your choice of currency. Simply visit [https://restjquery.com](https://restjquery.com) and select **"I would like some support"** and pay.
 
+You will then be invited to the Slack team. Once you have created an account you can ask for help directly or talk with the rest of the community.
 
-### Example for Getting Posts
-```JavaScript
-var posts = restjQuery();
-```
+If you just want to show some appreciation for the project you can do that too.
 
-### Example for Getting a Single Post (Hello World)
-```JavaScript
-var helloWorld = restjQuery({
-	siteUrl: "https://wc-rest-testing.dev",
-	endPoint: 'posts/',
-	postID: '1'
-});
-```
+If you want to [contribute to the project](https://github.com/seb86/WordPress-REST-API-jQuery/blob/master/CONTRIBUTING.md) you are welcome to do so. Just follow the simple instructions.
 
-### Example for Updating a Single Post
-```JavaScript
-restjQuery({
-	siteUrl: "https://wc-rest-testing.dev",
-	endPoint: 'posts/',
-	postID: '1',
-	postData: {"title":"Go Away... Im Resting"},
-	formMethod: 'POST'
-});
-```
+I hope you have fun with the project.
 
-### Example for Getting Products (WooCommerce)
-```JavaScript
-var products = restjQuery({
-	siteUrl: "https://wc-rest-testing.dev",
-	wpSystem: 'wc/',
-	apiVersion: 'v1/',
-	endPoint: 'products',
-});
-```
+Thank you for stopping by.
 
-### Example for Getting a Single Product (WooCommerce)
-```JavaScript
-var singleItem = restjQuery({
-	siteUrl: "https://wc-rest-testing.dev",
-	wpSystem: 'wc/',
-	apiVersion: 'v1/',
-	endPoint: 'products/',
-	postID: '123',
-});
-```
+regards,
+
+Sébastien Dumont.

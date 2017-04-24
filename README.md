@@ -6,7 +6,7 @@ A lightweight jQuery script for handerling REST API requests developed by [Séba
 
 [Documentation](https://docs.restjquery.com/) | [Examples](https://github.com/seb86/WordPress-REST-API-jQuery-Examples)
 
-You can use the [WordPress REST API jQuery Support](https://github.com/seb86/WordPress-REST-API-jQuery-Support) plugin for quick script installation.
+You can use the [WordPress REST API jQuery Support](https://wordpress.org/plugins/wp-rest-api-jquery-support/) plugin for quick script installation.
 
 This project was created to save time writing more lines of code just to get the returned REST API response via jQuery. Perfect for keeping your own code to a minimum rather than repeating yourself.
 

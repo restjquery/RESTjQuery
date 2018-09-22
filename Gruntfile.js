@@ -101,10 +101,10 @@ module.exports = function(grunt) {
 	// Set the default grunt command to run test cases.
 	grunt.registerTask( 'default', [ 'test' ] );
 
-	// Checks for errors with the javascript and text domain.
+	// Checks for errors with the javascript.
 	grunt.registerTask( 'test', [ 'jshint' ]);
 
-	// Minify javascript rady for distribution.
+	// Minify javascript ready for distribution.
 	grunt.registerTask( 'build', [ 'newer:uglify' ]);
 
 	// Creates a deployable script zipped up ready to use.

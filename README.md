@@ -138,7 +138,7 @@ Thank you for your support! 🙌
 > No supporters yet! 🔒-->
 
 
-Development 💻
+## Development 💻
 
 1. Clone the GitHub repository: https://github.com/seb86/WordPress-REST-API-jQuery.git
 2. Browse to the folder in the command line.

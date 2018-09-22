@@ -137,6 +137,17 @@ Thank you for your support! 🙌
 
 > No supporters yet! 🔒-->
 
+
+Development 💻
+
+1. Clone the GitHub repository: https://github.com/seb86/WordPress-REST-API-jQuery.git
+2. Browse to the folder in the command line.
+3. Run the `npm install --only=dev` command to install the development dependencies within a /node_modules/ folder.
+4. Run the `grunt test` command to check for any JS errors.
+5. Run the `grunt build` command for minifying the script ready for distribution.
+6. Run the `grunt zip` command to generate a release zipped up.
+
+
 ---
 
 

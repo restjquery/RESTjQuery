@@ -1,10 +1,10 @@
 {
-  "title": "WordPress REST API jQuery",
+  "title": "RESTjQuery",
   "name": "WordPress-REST-API-jQuery",
   "author": "seb86",
   "license": "GPL-2.0",
   "version": "1.0.0",
-  "description": "A lightweight jQuery script for handerling REST API requests.",
+  "description": "A lightweight jQuery script for handerling REST API requests from or to your WordPress site.",
   "homepage": "https://restjquery.com/",
   "main": "Gruntfile.js",
   "repository": {

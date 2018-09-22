@@ -1,10 +1,10 @@
-# WordPress REST API jQuery
+# RESTjQuery
 
 [![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg)](https://github.com/seb86/WordPress-REST-API-jQuery/blob/master/LICENSE.md)
 [![GitHub forks](https://img.shields.io/github/forks/seb86/WordPress-REST-API-jQuery.svg?style=flat)](https://github.com/seb86/WordPress-REST-API-jQuery/network)
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=RESTjQuery%20is%20a%20lightweight%20jQuery%20script%20for%20handling%20REST%20API%20requests%20from%20WordPress.%20—&url=https://restjquery.com&via=sebd86&hashtags=WordPress,RESTjQuery)
 
-A lightweight jQuery script for handerling REST API requests.
+A lightweight jQuery script for handerling REST API requests from or to your WordPress site.
 
 ###### Follow us
 💻 [Website](https://restjquery.com) 🐦[Twitter](https://twitter.com/sebd86)
@@ -14,7 +14,7 @@ A lightweight jQuery script for handerling REST API requests.
 
 This project was created to save time writing more lines of code just to get the returned REST API response via jQuery. Perfect for keeping your own code to a minimum rather than repeating yourself.
 
-Perfect for building apps.
+Perfect for building web apps.
 
 <!--If you need help with the script or want to join a community of developers who use the script you can join the Slack channel after paying a fee in your choice of currency. Simply visit [https://restjquery.com](https://restjquery.com) and select **"I would like some support"** and pay.
 
@@ -93,9 +93,9 @@ var posts = restjQuery(
 
 ## Support ⭐
 
-WordPress REST API jQuery is released freely and openly. Feedback or ideas and approaches to solving limitations in WordPress REST API jQuery is greatly appreciated.
+RESTjQuery is released freely and openly. Feedback or ideas and approaches to solving limitations in RESTjQuery is greatly appreciated.
 
-At present I **do not offer a dedicated, premium support channel** for WordPress REST API jQuery. Please understand this is a non-commercial project. As such:
+At present I **do not offer a dedicated, premium support channel** for RESTjQuery. Please understand this is a non-commercial project. As such:
 
 * Development time for it is effectively being donated and is therefore, limited.
 * Support inquiries may not be answered in a timely manner.
@@ -108,7 +108,7 @@ If you think you have found a bug in the project, a problem with the documentati
 
 ## Contribute
 
-If you or your company use WordPress REST API jQuery or appreciate the work I’m doing in open source, please consider supporting me directly so I can continue maintaining it and keep evolving the project. It's pretty clear that software actually costs something, and even though it may be offered freely, somebody is paying the cost.
+If you or your company use RESTjQuery or appreciate the work I’m doing in open source, please consider supporting me directly so I can continue maintaining it and keep evolving the project. It's pretty clear that software actually costs something, and even though it may be offered freely, somebody is paying the cost.
 
 You'll be helping to ensure I can spend the time not just fixing bugs, adding features, releasing new versions, but also keeping the project afloat. Any contribution you make is a big help and is greatly appreciated.
 
@@ -153,12 +153,12 @@ Thank you for your support! 🙌
 
 ##### License
 
-WordPress REST API jQuery is released under [GNU General Public License v3.0](http://www.gnu.org/licenses/gpl-3.0.html).
+RESTjQuery is released under [GNU General Public License v3.0](http://www.gnu.org/licenses/gpl-3.0.html).
 
 
 ##### Credits
 
-WordPress REST API jQuery is developed and maintained by [Sébastien Dumont](https://sebastiendumont.com/about/).
+RESTjQuery is developed and maintained by [Sébastien Dumont](https://sebastiendumont.com/about/).
 
 ---
 

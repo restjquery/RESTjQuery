@@ -1,3 +1,33 @@
+;( function ( $, window, document, undefined ) {
+	'use strict';
+
+	// If there's no jQuery, RESTjQuery can't work.
+	if (!$) {
+		return;
+	}
+
+	var rj_scripts = {};
+
+	$.fn.restjQuery = function() {
+		var $this = $( this );
+
+		var version = "1.0.0"; // Version
+		var hostName = window.location.hostname; // Returns current host name only.	
+		var protocol = window.location.protocol; // Returns the protocol used. i.e file: or http: or https:
+
+		// Default settings.
+		var defaults = {
+
+		};
+
+		rj_scripts = {
+		}
+	}
+
+	// Initialize RESTjQuery.
+	rj_scripts.init();
+});
+
 var response = null;
 
 var restjQuery = function( options ) {

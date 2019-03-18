@@ -21,7 +21,7 @@ Perfect for building web apps.
 
 Yes, it's free. But here's what you should _really_ care about:
 
-* It's lightweight. ![GitHub file size in bytes](https://img.shields.io/github/size/restjquery/RESTjQuery/dist/wp-rest-api-jquery.min.js.svg?style=flat-square)
+* It's lightweight. ![GitHub file size in bytes](https://img.shields.io/github/size/restjquery/RESTjQuery/dist/restjquery.min.js.svg?style=flat-square)
 
 
 Please understand that this repository is not a place to seek help with configuration-related issues. Use it to report bugs, propose improvements, or discuss new features.

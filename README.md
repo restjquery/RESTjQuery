@@ -1,97 +1,83 @@
 # RESTjQuery
 
-[![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg)](https://github.com/seb86/WordPress-REST-API-jQuery/blob/master/LICENSE.md)
-[![GitHub forks](https://img.shields.io/github/forks/seb86/WordPress-REST-API-jQuery.svg?style=flat)](https://github.com/seb86/WordPress-REST-API-jQuery/network)
-[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=RESTjQuery%20is%20a%20lightweight%20jQuery%20script%20for%20handling%20REST%20API%20requests%20from%20WordPress.%20—&url=https://restjquery.com&via=sebd86&hashtags=WordPress,RESTjQuery)
+![GitHub Release Date](https://img.shields.io/github/release-date/restjquery/RESTjQuery.svg?color=%2355196f&style=for-the-badge)
+[![License](https://img.shields.io/badge/license-GPL--3.0%2B-red.svg?style=for-the-badge)](https://github.com/restjquery/RESTjQuery/blob/master/LICENSE.md)
+[![GitHub forks](https://img.shields.io/github/forks/seb86/WordPress-REST-API-jQuery.svg?style=for-the-badge)](https://github.com/restjquery/RESTjQuery/network)
 
-A lightweight jQuery script for handerling REST API requests from or to your WordPress site.
+Handle REST-API requests from or to your WordPress site using jQuery.
 
-###### Follow us
-💻 [Website](https://restjquery.com) 🐦[Twitter](https://twitter.com/sebd86)
+###### Follow me
+💻 [Website](https://sebastiendumont.com) 🐦[Twitter](https://twitter.com/sebd86)
 
 
-## Overview 🔔
+## 🔔 Overview
 
 This project was created to save time writing more lines of code just to get the returned REST API response via jQuery. Perfect for keeping your own code to a minimum rather than repeating yourself.
 
 Perfect for building web apps.
-
-<!--If you need help with the script or want to join a community of developers who use the script you can join the Slack channel after paying a fee in your choice of currency. Simply visit [https://restjquery.com](https://restjquery.com) and select **"I would like some support"** and pay.
-
-You will then be invited to the Slack team. Once you have created an account you can ask for help directly or talk with the rest of the community.
-
-If you just want to show some appreciation for the project you can do that too.-->
 
 
 ### Is This Free?
 
 Yes, it's free. But here's what you should _really_ care about:
 
-* It's lightweight. Only 3.04 KB
+* It's lightweight. ![GitHub file size in bytes](https://img.shields.io/github/size/restjquery/RESTjQuery/dist/wp-rest-api-jquery.min.js.svg?style=flat-square)
 
-
-### What's the Catch?
-
-This is a non-commercial project. As such:
-
-* Development time for it is effectively being donated and is therefore, limited.
-* Critical issues may not be resolved promptly.
-
-<!--If you:
-
-* have a customization/integration requirement, or
-* want to see another feature added, e.g. support for **eggs** or **donuts**,
-
-...then I'd love to [hear from you](https://sebastiendumont.com/about/)!-->
 
 Please understand that this repository is not a place to seek help with configuration-related issues. Use it to report bugs, propose improvements, or discuss new features.
 
-## Guide 📘
 
-#### Documentation 📖
+## 📘 Guide
+
+#### 📖 Documentation
 
 * [Documentation](https://docs.restjquery.com/)
-* [Examples](https://github.com/seb86/WordPress-REST-API-jQuery-Examples)
+* [Examples](https://github.com/restjquery/examples)
 
 
-#### Requirements ✅
+#### ✅ Requirements
 
 To use this project you will need:
 
-* WordPress v4.4+
+* WordPress v4.4 minimum
 
 
-#### Installation 💽
+#### 💽 Installation
 
 If you want to use the script within your WordPress site:
 
 1. Go to WordPress Admin > Plugins > Add New.
-2. Search for [WordPress REST API jQuery Support](https://wordpress.org/plugins/wp-rest-api-jquery-support/).
+2. Search for [RESTjQuery](https://wordpress.org/plugins/wp-rest-api-jquery-support/).
 3. Click Install Now and Activate the plugin.
 
 ... or if you wish to use the script in an app while keeping WordPress safe and secure elsewhere:
 
 1. Download the latest release from this Git repository.
-2. Copy `wp-rest-api-jquery.min.js` from `dist` folder to your app lib folder.
-3. Apply the script either to the header or footer of your app.
+2. Copy `restjquery.min.js` from `dist` folder to your app lib folder.
+3. Apply the script either to the head or just before your close body tag of your web app.
 
-```
-<script src="https://yourdomain.***/lib/wp-rest-api-jquery.min.js"></script>
+```javascript
+<script src="https://yourdomain.***/lib/restjquery.min.js"></script>
 ```
 
+or you can use the latest version directly from restjquery.com
+
+```javascript
+<script src="https://restjquery.com/release/latest/restjquery.min.js"></script>
+```
 
 ### Usage
 
-Make sure that when you use the script in your app that you set the `site_url` to the location of WordPress. Otherwise it is NOT required!
+Make sure that when you use the script in your app that you set the `site_url` to the location of the WordPress site. Otherwise it is NOT required!
 
-```
+```javascript
 var posts = restjQuery(
   site_url: "https://wordpress.location"
 );
 ```
 
 
-## Support ⭐
+## ⭐ Support
 
 RESTjQuery is released freely and openly. Feedback or ideas and approaches to solving limitations in RESTjQuery is greatly appreciated.
 
@@ -101,46 +87,37 @@ At present I **do not offer a dedicated, premium support channel** for RESTjQuer
 * Support inquiries may not be answered in a timely manner.
 * Critical issues may not be resolved promptly.
 
-#### Reporting Issues 📝
 
-If you think you have found a bug in the project, a problem with the documentation, or want to see a new feature added, please [open a new issue](https://github.com/seb86/WordPress-REST-API-jQuery/issues/new) and I will do my best to help you out.
+#### 📝 Reporting Issues
+
+If you think you have found a bug in the project, a problem with the documentation, or want to see a new feature added, please [open a new issue](https://github.com/restjquery/RESTjQuery/issues/new) and I will do my best to help you out.
 
 
 ## Contribute
 
-If you or your company use RESTjQuery or appreciate the work I’m doing in open source, please consider supporting me directly so I can continue maintaining it and keep evolving the project. It's pretty clear that software actually costs something, and even though it may be offered freely, somebody is paying the cost.
+If you or your company use RESTjQuery or appreciate the work I’m doing in open source, please consider supporting me directly so I can continue maintaining it and keep evolving the project.
 
-You'll be helping to ensure I can spend the time not just fixing bugs, adding features, releasing new versions, but also keeping the project afloat. Any contribution you make is a big help and is greatly appreciated.
+You'll be helping to ensure I can spend the time not just fixing bugs, adding features or releasing new versions but also keeping the project afloat. Any contribution you make is a big help and is greatly appreciated.
 
-Please also consider starring ✨ and sharing 👍 the repo! This helps the project getting known and grow with the community. 🙏
+Please also consider starring ✨ and sharing 👍 the project repository! This helps the project getting known and grow with the community. 🙏
 
-If you want to do a one-time donation, you can donate to:
+I accept one-time donations and monthly via [BuyMeACoffee.com](https://www.buymeacoffee.com/sebastien)
 - [My PayPal](https://www.paypal.me/codebreaker)
 - [BuyMeACoffee.com](https://www.buymeacoffee.com/sebastien)
+- Bitcoin (BTC): `3L4cU7VJsXBFckstfJdP2moaNhTHzVDkKQ`
+- Ethereum (ETH): `0xc6a3C18cf11f5307bFa11F8BCBD51F355b6431cB`
+- Litecoin (LTC): `MNNy3xBK8sM8t1YUA2iAwdi9wRvZp9yRoi`
 
-<!--
-Need to work on how to support monthly donations. Once I have figured it out, share details here.
--->
 If you have special requirements for a sponsorship, you can email me and we can talk.
 
-<!--
-Uncomment this part once the project has a least one supporter.
-[See all my amazing supports](#supporters) 🌟
--->
-
-If you would like to contribute code to this project then please follow these [contribution guidelines](https://github.com/seb86/WordPress-REST-API-jQuery/blob/master/contributing.md).
+If you would like to contribute code to this project then please follow these [contribution guidelines](https://github.com/restjquery/RESTjQuery/blob/master/contributing.md).
 
 Thank you for your support! 🙌
 
 
-<!--## Supporters
+## 💻 Development
 
-> No supporters yet! 🔒-->
-
-
-## Development 💻
-
-1. Clone the GitHub repository: https://github.com/seb86/WordPress-REST-API-jQuery.git
+1. Clone the GitHub repository: https://github.com/restjquery/RESTjQuery.git
 2. Browse to the folder in the command line.
 3. Run the `npm install --only=dev` command to install the development dependencies within a /node_modules/ folder.
 4. Run the `grunt test` command to check for any JS errors.
